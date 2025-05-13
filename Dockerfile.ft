@@ -1,0 +1,36 @@
+# FROM docker.io/pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+FROM docker.io/pytorch/pytorch:2.7.0-cuda12.6-cudnn9-devel
+
+# Install essential utilities
+RUN apt-get update && apt-get install -y curl net-tools iputils-ping 
+
+# Optional: Install VS Code Server
+RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' -o vscode_cli.tar.gz && \
+    tar -xf vscode_cli.tar.gz && \
+    mv code /usr/local/bin/code && \
+    rm vscode_cli.tar.gz
+
+# Install rclone and prepare config directory
+# https://rclone.org/downloads/
+COPY rclone-v1.69.2-linux-amd64.deb .
+
+RUN curl -Lk 'https://downloads.rclone.org/v1.69.2/rclone-v1.69.2-linux-amd64.deb' -o rclone-v1.69.2-linux-amd64.deb && \
+    dpkg -i rclone-v1.69.2-linux-amd64.deb && \
+    rm rclone-v1.69.2-linux-amd64.deb && \
+    mkdir -p /root/.config/rclone
+
+# Upgrade pip and install Python packages
+RUN pip install --upgrade pip
+RUN pip install python-dotenv speedtest-cli pythonping salad-cloud-sdk
+RUN pip install peft==0.14.0 trl==0.12.2 huggingface_hub transformers bitsandbytes datasets 
+
+# Set working directory and copy application files
+WORKDIR /app
+
+# Copy application files
+COPY progress_check.py ft-normal.py ft-interruptible.py helper.py /app/
+
+# Set default command
+CMD ["python", "ft-interruptible.py"]
+
+#CMD ["sleep","infinity"]
