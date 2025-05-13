@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore", message="You are using `torch.load` with `weig
 
 # "meta-llama/Meta-Llama-3.1-8B", "meta-llama/Llama-3.2-1B"
 g_MODEL, g_TASK_NAME, g_SEED, g_EPOCHS, g_BATCH_SIZE, g_SAVING_STEPS = \
-  "meta-llama/Llama-3.2-1B", "ft-normal", 41, 2, 10, 200
+  "meta-llama/Meta-Llama-3.1-8B", "ft-normal", 41, 2, 5, 200
 
 
 # Custom callback for printing state information when (after) checkpoints are saved
@@ -68,7 +68,7 @@ train = dataset['train']  # Original size: 400,000 samples
 test = dataset['test']    # Original size:   2,000 samples
 
 # For faster experimentation, only use 2000 examples
-train = train.select(range(4000)) 
+train = train.select(range(2000)) 
 #test = test.select(range(2000))
 
 # Print an example sample

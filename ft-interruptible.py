@@ -14,15 +14,15 @@ from trl import SFTTrainer, SFTConfig, DataCollatorForCompletionOnlyLM
 import warnings
 warnings.filterwarnings("ignore", message="You are using `torch.load` with `weights_only=False`")
 
-###################### For running on SaladCloud - 1
+###################### For running on SaladCloud - 1: Get the parameters, start the uploader thread, filter node, and sync data from cloud to local
 from helper import  Resume_From_Cloud, Get_Checkpoint, Notify_Uploader, Close_All, g_TASK_NAME, g_SEED, g_MODEL, g_EPOCHS, g_BATCH_SIZE, g_SAVING_STEPS
-Resume_From_Cloud()
+Resume_From_Cloud()  
 ######################
 
 # Custom callback for printing state information when (after) checkpoints are saved
 class CheckpointCallback(TrainerCallback):
     def on_save(self, args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
-        ##################### For running on SaladCloud - 2
+        ##################### For running on SaladCloud - 2: Notify the uploader thread to upload the latest checkpoint
         Notify_Uploader(state.__dict__)
         #####################    
         #print(60 * "*" + " The current training state")
@@ -158,7 +158,7 @@ fine_tuning = SFTTrainer(
 )
 
 # Train the model
-##################### For running on SaladCloud - 3
+##################### For running on SaladCloud - 3: Resume training from the latest checkpoint 
 temp = Get_Checkpoint()
 if temp == "":
     fine_tuning.train()
@@ -170,6 +170,6 @@ else:
 fine_tuning.save_model(output_dir=PROJECT_RUN_NAME + "/final")
 
 
-##################### For running on SaladCloud - 4
+##################### For running on SaladCloud - 4:  Wait for all checkpoints and the final model to finish uploading , and then shutdown the container group
 Close_All()
 #####################
