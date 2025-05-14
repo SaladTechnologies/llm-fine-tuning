@@ -30,6 +30,7 @@ g_DLSPEED          = int(os.getenv("DLSPEED", "50")) # Mbps
 g_ULSPEED          = int(os.getenv("ULSPEED", "20")) # Mbps
 g_CUDA_RT_VERSION  = float(os.getenv("CUDA_RT_VERSION", "12.6")) 
 g_VRAM_AVAILABLE   = int(os.getenv("VRAM_AVAILABLE","22000"))    # MiB
+g_MAX_NO_RESPONSE_TIME = int(os.getenv("MAX_NO_RESPONSE_TIME","3600")) # Second
 
 g_IMAGE            = os.getenv("IMAGE", "")
 
@@ -50,10 +51,10 @@ request_body = ContainerGroupCreationRequest(
            "cpu": 8,
            "memory": 24576,
            "gpu_classes": ['ed563892-aacd-40f5-80b7-90c9be6c759b'],
-           "storage_amount": 26843545600,
-       },  # 25 GB
+           "storage_amount": 53687091200,
+       },  # 50 GB
     
-       "command": ['sh', '-c', 'sleep infinity' ],
+       # "command": ['sh', '-c', 'sleep infinity' ],
        "priority": "high",
        "environment_variables": {
                "CLOUDFLARE_ENDPOINT_URL": CLOUDFLARE_ENDPOINT_URL,
@@ -80,10 +81,11 @@ request_body = ContainerGroupCreationRequest(
                "ULSPEED": g_ULSPEED,                  
                "DLSPEED": g_DLSPEED,                  
                "CUDA_RT_VERSION": g_CUDA_RT_VERSION,                  
-               "VRAM_AVAILABLE": g_VRAM_AVAILABLE                                 
+               "VRAM_AVAILABLE": g_VRAM_AVAILABLE,
+               "MAX_NO_RESPONSE_TIME": g_MAX_NO_RESPONSE_TIME
         }
    },
-   autostart_policy=False,
+   autostart_policy=True,
    restart_policy="always",
    replicas=1,
    country_codes=[ "us" ]

@@ -3,18 +3,25 @@
 #import math
 #from tqdm import tqdm
 #from huggingface_hub import login
+from datetime import datetime, timezone
+
 import torch
+# In PyTorch 2.6 and later, the default behavior of torch.load() changed — weights_only=True is now the default.
+# This monkey patch restores the full checkpoint loading behavior from PyTorch 2.5, allowing deserialization of the entire training state (model, optimizer, Trainer state, etc.).
+_original_torch_load = torch.load
+def unsafe_torch_load(*args, **kwargs):
+    kwargs['weights_only'] = False
+    return _original_torch_load(*args, **kwargs)
+torch.load = unsafe_torch_load
+
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, set_seed, BitsAndBytesConfig, TrainerCallback, TrainerControl, TrainerState
 from datasets import load_dataset, Dataset, DatasetDict
 from peft import LoraConfig            
 from trl import SFTTrainer, SFTConfig, DataCollatorForCompletionOnlyLM
 #from datetime import datetime
 
-# Suppress the warning
-import warnings
-warnings.filterwarnings("ignore", message="You are using `torch.load` with `weights_only=False`")
-
 ###################### For running on SaladCloud - 1: Get the parameters, start the uploader thread, filter node, and sync data from cloud to local
+import copy
 from helper import  Resume_From_Cloud, Get_Checkpoint, Notify_Uploader, Close_All, g_TASK_NAME, g_SEED, g_MODEL, g_EPOCHS, g_BATCH_SIZE, g_SAVING_STEPS
 Resume_From_Cloud()  
 ######################
@@ -23,7 +30,7 @@ Resume_From_Cloud()
 class CheckpointCallback(TrainerCallback):
     def on_save(self, args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
         ##################### For running on SaladCloud - 2: Notify the uploader thread to upload the latest checkpoint
-        Notify_Uploader(state.__dict__)
+        Notify_Uploader( copy.deepcopy (state.__dict__) ) # Ensuring the uploader thread receives a frozen snapshot of the state
         #####################    
         #print(60 * "*" + " The current training state")
         #print(state)
@@ -63,6 +70,7 @@ SAVE_STEPS = g_SAVING_STEPS   # saving
 LOG_TO_WANDB = False
 
 # Load dataset from Hugging Face Hub
+print("Downloading the dataset at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
 dataset = load_dataset("ed-donner/pricer-data")
 train = dataset['train']  # Original size: 400,000 samples
 test = dataset['test']    # Original size:   2,000 samples
@@ -90,11 +98,13 @@ else:
   )
 
 # Load tokenizer and adjust padding config
+print("Downloading the tokenizer at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token # Padding for batched traning
 tokenizer.padding_side = "right"
 
 # Load the quantized base model
+print("Downloading the model at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
 base_model = AutoModelForCausalLM.from_pretrained(
     BASE_MODEL,
     quantization_config=quant_config,
@@ -131,6 +141,7 @@ train_parameters = SFTConfig(
     save_steps=SAVE_STEPS,
     save_total_limit=10,                                      # Keep only the last 10 checkpoints to save disk space. Older ones will be deleted.
     logging_steps=STEPS,                                      # Frequency of logging
+    disable_tqdm=True,
     learning_rate=LEARNING_RATE,
     weight_decay=0.001,
     fp16=False,
@@ -158,7 +169,9 @@ fine_tuning = SFTTrainer(
 )
 
 # Train the model
+print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
 ##################### For running on SaladCloud - 3: Resume training from the latest checkpoint 
+Notify_Uploader('start') # Signal uploader thread: model downloaded and training started
 temp = Get_Checkpoint()
 if temp == "":
     fine_tuning.train()
@@ -168,7 +181,7 @@ else:
 
 # Save final model
 fine_tuning.save_model(output_dir=PROJECT_RUN_NAME + "/final")
-
+print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
 
 ##################### For running on SaladCloud - 4:  Wait for all checkpoints and the final model to finish uploading , and then shutdown the container group
 Close_All()

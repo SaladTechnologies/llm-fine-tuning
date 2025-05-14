@@ -12,8 +12,6 @@ RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 
 # Install rclone and prepare config directory
 # https://rclone.org/downloads/
-COPY rclone-v1.69.2-linux-amd64.deb .
-
 RUN curl -Lk 'https://downloads.rclone.org/v1.69.2/rclone-v1.69.2-linux-amd64.deb' -o rclone-v1.69.2-linux-amd64.deb && \
     dpkg -i rclone-v1.69.2-linux-amd64.deb && \
     rm rclone-v1.69.2-linux-amd64.deb && \

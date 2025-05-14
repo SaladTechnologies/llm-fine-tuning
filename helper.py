@@ -36,15 +36,16 @@ g_CONTAINER_GROUP_NAME = os.getenv("CONTAINER_GROUP_NAME","") # Define the conta
 g_TASK_NAME            = os.getenv("TASK_NAME", "")           # Define the sub-folder in Cloudflare R2
 
 # For node filtering: Network performance, supported CUDA Version and GPU VRAM available
-g_MODEL            = os.getenv("MODEL", "")
-g_EPOCHS           = int(os.getenv("EPOCHS", ""))
-g_BATCH_SIZE       = int(os.getenv("BATCH_SIZE", ""))
-g_SAVING_STEPS     = int(os.getenv("SAVING_STEPS", ""))
-g_SEED             = int(os.getenv("SEED", "42"))
-g_DLSPEED          = int(os.getenv("DLSPEED", "50")) # Mbps
-g_ULSPEED          = int(os.getenv("ULSPEED", "20")) # Mbps
-g_CUDA_RT_VERSION  = float(os.getenv("CUDA_RT_VERSION", "12.6")) # The CUDA version used by the container image
-g_VRAM_AVAILABLE   = int(os.getenv("VRAM_AVAILABLE","22000"))    # 22000 MiB
+g_MODEL                = os.getenv("MODEL", "")
+g_EPOCHS               = int(os.getenv("EPOCHS", ""))
+g_BATCH_SIZE           = int(os.getenv("BATCH_SIZE", ""))
+g_SAVING_STEPS         = int(os.getenv("SAVING_STEPS", ""))
+g_SEED                 = int(os.getenv("SEED", "42"))
+g_DLSPEED              = int(os.getenv("DLSPEED", "50")) # Mbps
+g_ULSPEED              = int(os.getenv("ULSPEED", "20")) # Mbps
+g_CUDA_RT_VERSION      = float(os.getenv("CUDA_RT_VERSION", "12.6"))   # The CUDA version used by the container image
+g_VRAM_AVAILABLE       = int(os.getenv("VRAM_AVAILABLE","22000"))      # 22000 MiB
+g_MAX_NO_RESPONSE_TIME = int(os.getenv("MAX_NO_RESPONSE_TIME","3600")) # No response from the trainer (acting as Health Check), including model downloading and checkpoint saving
 
 # Create a folder for the task
 if os.path.exists(g_TASK_NAME):
@@ -278,7 +279,7 @@ def Resume_From_Cloud():
             if g_State["done"] == True:
                 print("The training has already been finished!")
                 Shutdown()
-            g_State["nodes"].append((GO_LIVE_TIME, SALAD_MACHINE_ID, "online", env))
+            g_State["nodes"].append((GO_LIVE_TIME, SALAD_MACHINE_ID, "node_online", env))
 
             if g_State["previous_checkpoint"] != "": # Download the previous checkpoint to local
                 source = g_FOLDER + "/" + g_TASK_NAME + "/" + g_State["previous_checkpoint"]
@@ -286,7 +287,7 @@ def Resume_From_Cloud():
                 Data_Sync(source, g_BUCKET, target, upload_local_to_cloud=False) 
 
     else:            # Start fresh  
-        g_State = {"done": False, "task":g_TASK_NAME, "previous_checkpoint": "", "training_state":"", "nodes": [ (GO_LIVE_TIME, SALAD_MACHINE_ID, "online", env)] } 
+        g_State = {"done": False, "task":g_TASK_NAME, "previous_checkpoint": "", "training_state":"", "nodes": [ (GO_LIVE_TIME, SALAD_MACHINE_ID, "node_online", env)] } 
 
     # Update the state file in the cloud with the new node
     with open(LOCAL_STATE_FILE, 'w') as f:
@@ -337,34 +338,63 @@ def Close_All():
 def Uploader(queue):
     global g_State
     
+    no_response_time = 0
+
     while True:
-        state = queue.get()  # Block here
+
+        if queue.empty():
+            time.sleep(10)
+            no_response_time = no_response_time + 10
+            if no_response_time > g_MAX_NO_RESPONSE_TIME:
+                print("No response from the trainer thread for one hour: poor download throughput or node performance")
+                Reallocate("poor network throughput or node performance")
+            continue
+
+        no_response_time = 0 # Reset
         
-        if state == None:
+        state = queue.get()  # May block here
+        
+        if state == None:     # Training completed
             print("The training is done and the uploader thread exits!")
-            break
+            queue.task_done() 
+            break # exits
 
-        global_step = state["global_step"]
-        checkpoint = f"checkpoint-{global_step}"
+        elif state == 'start': # The model downloaded and training started
+            TRAINING_START_TIME = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            if g_State["previous_checkpoint"] == "": # start fresh
+                g_State["nodes"].append((TRAINING_START_TIME, SALAD_MACHINE_ID, "training_started"))
+            else:                                    # training resumed
+                g_State["nodes"].append((TRAINING_START_TIME, SALAD_MACHINE_ID, "training_resumed", g_State["previous_checkpoint"]))
+
+            with open(LOCAL_STATE_FILE, 'w') as f:
+                json.dump(g_State, f, indent=2)
+            Data_Sync(LOCAL_STATE_FILE, g_BUCKET, REMOTE_STATE_FILE, upload_local_to_cloud=True)
+
+        else:                 # A checkpoint is saved
+            global_step = state["global_step"]
+            checkpoint = f"checkpoint-{global_step}"
         
-        # Save the checkpoint first   
-        source = g_TASK_NAME + "/" + checkpoint
-        target = g_FOLDER + "/" + g_TASK_NAME + "/" + checkpoint
-        _, _, throughput = Data_Sync(source, g_BUCKET, target, upload_local_to_cloud=True)
+            # Save the checkpoint first   
+            source = g_TASK_NAME + "/" + checkpoint
+            target = g_FOLDER + "/" + g_TASK_NAME + "/" + checkpoint
+            _, _, throughput = Data_Sync(source, g_BUCKET, target, upload_local_to_cloud=True)
   
-        # if the actual upload throughput is low, trigger the IMDS reallocation
+            # if the actual upload throughput is too low, trigger the IMDS reallocation
+            
+            if throughput < g_ULSPEED / 2:
+                print(f"The actual upload throughput is only {throughput} Mbps, warning !!!")
         
-        # Then save the state file
-        UPLOAD_TIME = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
-        g_State["nodes"].append((UPLOAD_TIME, SALAD_MACHINE_ID, checkpoint))  
-        g_State["previous_checkpoint"] = checkpoint 
-        g_State['training_state'] = state
-        with open(LOCAL_STATE_FILE, 'w') as f:
-            json.dump(g_State, f, indent=2)
-        Data_Sync(LOCAL_STATE_FILE, g_BUCKET, REMOTE_STATE_FILE, upload_local_to_cloud=True)
+            # Then save the state file
+            CPT_UPLOAD_TIME = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            g_State["nodes"].append((CPT_UPLOAD_TIME, SALAD_MACHINE_ID, 'checkpoint_saved', checkpoint))  
+            g_State["previous_checkpoint"] = checkpoint 
+            g_State['training_state'] = state
 
-        queue.task_done()
+            with open(LOCAL_STATE_FILE, 'w') as f:
+                json.dump(g_State, f, indent=2)
+            Data_Sync(LOCAL_STATE_FILE, g_BUCKET, REMOTE_STATE_FILE, upload_local_to_cloud=True)
 
+        queue.task_done() # mainly for queue.join(), not for queue.qsize()
 
 ul_thread = threading.Thread(target=Uploader, args=(upload_task_queue,))
 ul_thread.start()
