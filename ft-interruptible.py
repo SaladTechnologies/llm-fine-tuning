@@ -70,7 +70,7 @@ SAVE_STEPS = g_SAVING_STEPS   # saving
 LOG_TO_WANDB = False
 
 # Load dataset from Hugging Face Hub
-print("Downloading the dataset at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the dataset at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 dataset = load_dataset("ed-donner/pricer-data")
 train = dataset['train']  # Original size: 400,000 samples
 test = dataset['test']    # Original size:   2,000 samples
@@ -98,13 +98,13 @@ else:
   )
 
 # Load tokenizer and adjust padding config
-print("Downloading the tokenizer at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the tokenizer at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token # Padding for batched traning
 tokenizer.padding_side = "right"
 
 # Load the quantized base model
-print("Downloading the model at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the model at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 base_model = AutoModelForCausalLM.from_pretrained(
     BASE_MODEL,
     quantization_config=quant_config,
@@ -154,6 +154,7 @@ train_parameters = SFTConfig(
     report_to = "none", 
     max_seq_length=MAX_SEQUENCE_LENGTH,
     dataset_text_field="text",
+    include_num_input_tokens_seen = True,
     save_strategy="steps"                                     # "no", "epoch", "steps"
 )
 
@@ -169,7 +170,7 @@ fine_tuning = SFTTrainer(
 )
 
 # Train the model
-print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 ##################### For running on SaladCloud - 3: Resume training from the latest checkpoint 
 Notify_Uploader('start') # Signal uploader thread: model downloaded and training started
 temp = Get_Checkpoint()
@@ -181,7 +182,7 @@ else:
 
 # Save final model
 fine_tuning.save_model(output_dir=PROJECT_RUN_NAME + "/final")
-print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 
 ##################### For running on SaladCloud - 4:  Wait for all checkpoints and the final model to finish uploading , and then shutdown the container group
 Close_All()

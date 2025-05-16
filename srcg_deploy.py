@@ -2,6 +2,7 @@
 from salad_cloud_sdk import SaladCloudSdk
 from salad_cloud_sdk.models import ContainerGroupCreationRequest
 import os
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -9,8 +10,8 @@ CLOUDFLARE_ENDPOINT_URL = os.getenv("CLOUDFLARE_ENDPOINT_URL", "")
 CLOUDFLARE_REGION       = os.getenv("CLOUDFLARE_REGION", "")
 CLOUDFLARE_ID           = os.getenv("CLOUDFLARE_ID", "")
 CLOUDFLARE_KEY          = os.getenv("CLOUDFLARE_KEY", "")
-BUCKET                  =  os.getenv("BUCKET", "")
-FOLDER                  =  os.getenv("FOLDER", "")
+BUCKET                  = os.getenv("BUCKET", "")
+FOLDER                  = os.getenv("FOLDER", "")
 
 HF_TOKEN             = os.getenv("HF_TOKEN","")
 
@@ -32,7 +33,8 @@ g_CUDA_RT_VERSION  = float(os.getenv("CUDA_RT_VERSION", "12.6"))
 g_VRAM_AVAILABLE   = int(os.getenv("VRAM_AVAILABLE","22000"))    # MiB
 g_MAX_NO_RESPONSE_TIME = int(os.getenv("MAX_NO_RESPONSE_TIME","3600")) # Second
 
-g_IMAGE            = os.getenv("IMAGE", "")
+g_TASK_CREATION_TIME = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+g_IMAGE              = os.getenv("IMAGE", "")
 
 ########################################
 ########################################
@@ -82,7 +84,9 @@ request_body = ContainerGroupCreationRequest(
                "DLSPEED": g_DLSPEED,                  
                "CUDA_RT_VERSION": g_CUDA_RT_VERSION,                  
                "VRAM_AVAILABLE": g_VRAM_AVAILABLE,
-               "MAX_NO_RESPONSE_TIME": g_MAX_NO_RESPONSE_TIME
+               "MAX_NO_RESPONSE_TIME": g_MAX_NO_RESPONSE_TIME,
+               
+               "TASK_CREATION_TIME": g_TASK_CREATION_TIME
         }
    },
    autostart_policy=True,

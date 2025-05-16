@@ -70,7 +70,7 @@ SAVE_STEPS = g_SAVING_STEPS      # saving
 LOG_TO_WANDB = False
 
 # Load dataset from Hugging Face Hub
-print("Downloading the dataset at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the dataset at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 dataset = load_dataset("ed-donner/pricer-data")
 train = dataset['train']  # Original size: 400,000 samples
 test = dataset['test']    # Original size:   2,000 samples
@@ -98,13 +98,13 @@ else:
   )
 
 # Load tokenizer and adjust padding config
-print("Downloading the tokenizer at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the tokenizer at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
 tokenizer.pad_token = tokenizer.eos_token # Padding for batched traning
 tokenizer.padding_side = "right"
 
 # Load the quantized base model
-print("Downloading the model at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Downloading the model at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 base_model = AutoModelForCausalLM.from_pretrained(
     BASE_MODEL,
     quantization_config=quant_config,
@@ -141,7 +141,7 @@ train_parameters = SFTConfig(
     save_steps=SAVE_STEPS,
     save_total_limit=10,                                      # Keep only the last 10 checkpoints to save disk space. Older ones will be deleted.
     logging_steps=STEPS,                                      # Frequency of logging
-    disable_tqdm=True,
+    #disable_tqdm=True,
     learning_rate=LEARNING_RATE,
     weight_decay=0.001,
     fp16=False,
@@ -154,6 +154,7 @@ train_parameters = SFTConfig(
     report_to = "none", 
     max_seq_length=MAX_SEQUENCE_LENGTH,
     dataset_text_field="text",
+    include_num_input_tokens_seen = True,
     save_strategy="steps"                                     # "no", "epoch", "steps"
 )
 
@@ -169,10 +170,10 @@ fine_tuning = SFTTrainer(
 )
 
 # Train the model
-print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
-#fine_tuning.train()
+print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
+fine_tuning.train()
 # To resume from a checkpoint, uncomment the line below and set the checkpoint path
-fine_tuning.train(resume_from_checkpoint=PROJECT_RUN_NAME+'/checkpoint-400') 
+#fine_tuning.train(resume_from_checkpoint=PROJECT_RUN_NAME+'/checkpoint-200') 
 
 
 
@@ -180,4 +181,4 @@ fine_tuning.train(resume_from_checkpoint=PROJECT_RUN_NAME+'/checkpoint-400')
 
 # Save final model
 fine_tuning.save_model(output_dir=PROJECT_RUN_NAME + "/final")
-print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
