@@ -20,7 +20,7 @@ from peft import LoraConfig
 from trl import SFTTrainer, SFTConfig, DataCollatorForCompletionOnlyLM
 #from datetime import datetime
 
-###################### For running on SaladCloud - 1: Get the parameters, start the uploader thread, filter node, and sync data from cloud to local
+###################### For running on SaladCloud - 1st Change: Get the parameters, start the uploader thread, filter node, and sync data from cloud to local
 import copy
 from helper import  Resume_From_Cloud, Get_Checkpoint, Notify_Uploader, Close_All, g_TASK_NAME, g_SEED, g_MODEL, g_EPOCHS, g_BATCH_SIZE, g_SAVING_STEPS
 Resume_From_Cloud()  
@@ -29,7 +29,7 @@ Resume_From_Cloud()
 # Custom callback for printing state information when (after) checkpoints are saved
 class CheckpointCallback(TrainerCallback):
     def on_save(self, args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs):
-        ##################### For running on SaladCloud - 2: Notify the uploader thread to upload the latest checkpoint
+        ##################### For running on SaladCloud - 3rd Change: Notify the uploader thread to upload the latest checkpoint
         Notify_Uploader( copy.deepcopy (state.__dict__) ) # Ensuring the uploader thread receives a frozen snapshot of the state
         #####################    
         #print(60 * "*" + " The current training state")
@@ -171,7 +171,7 @@ fine_tuning = SFTTrainer(
 
 # Train the model
 print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
-##################### For running on SaladCloud - 3: Resume training from the latest checkpoint 
+##################### For running on SaladCloud - 2nd Change: Resume training from the latest checkpoint 
 Notify_Uploader('start') # Optional: Signal the uploader thread that the model downloaded and training started
 temp = Get_Checkpoint()
 if temp == "":
@@ -184,6 +184,6 @@ else:
 fine_tuning.save_model(output_dir=PROJECT_RUN_NAME + "/final")
 print("Training completed at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 
-##################### For running on SaladCloud - 4:  Wait for all checkpoints and the final model to finish uploading , and then shutdown the container group
+##################### For running on SaladCloud - 4th Change:  Wait for all checkpoints and the final model to finish uploading , and then shutdown the container group
 Close_All()
 #####################
