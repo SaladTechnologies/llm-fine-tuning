@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Warning: Executing this code will reset the task by removing all state files and checkpoints stored in the cloud.
+# Warning: Executing this code will reset the task by removing all the state file, checkpoints and the final model stored in the cloud.
 
 g_BUCKET                = os.getenv("BUCKET", "")
 g_FOLDER                = os.getenv("FOLDER", "")
