@@ -1,4 +1,4 @@
-# FROM docker.io/pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+# PyTorch 2.7.0 with Python 3.11, trl 0.12.2, and peft 0.14.0
 FROM docker.io/pytorch/pytorch:2.7.0-cuda12.6-cudnn9-devel
 
 # Install essential utilities
@@ -31,4 +31,9 @@ COPY progress_check.py ft-normal.py ft-interruptible.py helper.py /app/
 # Set default command
 CMD ["python", "ft-interruptible.py"]
 
+
+# Containers running on SaladCloud must maintain an active, continuously running process. If the main process exits, SaladCloud will automatically reallocate the instance and restart the container image. 
+# If you’d like to start a container and then log in interactively to run code manually, you can use a simple placeholder command like this:
 #CMD ["sleep","infinity"]
+
+# The pre-built image for this Dockerfile: docker.io/saladtechnologies/llm-fine-tuning:1.0.0

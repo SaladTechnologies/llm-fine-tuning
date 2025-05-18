@@ -28,6 +28,7 @@ g_FOLDER                = os.getenv("FOLDER", "")
 HF_TOKEN = os.getenv("HF_TOKEN", "")
 
 # Call the SaladCloud API to shutdown the instance when the training is completed
+# SaladCloud will introduce a new mechanism that allows the SRCG to shut itself down internally, eliminating the need for the SaladCloud Python SDK and API access.
 SALAD_API_KEY        = os.getenv("SALAD_API_KEY","")
 ORGANIZATION_NAME    = os.getenv("ORGANIZATION_NAME","")
 PROJECT_NAME         = os.getenv("PROJECT_NAME","")
@@ -82,7 +83,7 @@ def Shutdown():
             container_group_name = g_CONTAINER_GROUP_NAME
         )
         time.sleep(10)
-    
+        
 # Trigger node reallocation if a node is not suitable
 # https://docs.salad.com/products/sce/container-groups/imds/imds-reallocate
 def Reallocate(reason):
@@ -340,9 +341,9 @@ def Close_All():
 
     upload_task_queue.put(None) # Notify the uploader thread to terminate
 
-    # Waiting for all checkpoints to upload
+    # Waiting for all checkpoints to upload 
     while True:
-        temp = upload_task_queue.qsize()
+        temp = upload_task_queue.qsize() # 1 while None is still in the queue
         if temp > 0:
             print(f"Checkpoints ({temp}) are being uploaded ...", flush=True)
             time.sleep(10)
@@ -393,7 +394,7 @@ def Uploader(queue):
         
         state = queue.get()  # May block here
         
-        if state == None:     # Training completed
+        if state == None:     # Training completed - None is the last one in the queue 
             print("The training is done and the uploader thread exits!", flush=True)
             queue.task_done() 
             break # exits
@@ -403,8 +404,8 @@ def Uploader(queue):
 
             end   =  datetime.strptime( TRAINING_START_TIME, "%Y-%m-%d %H:%M:%S" )
             start =  datetime.strptime( g_State["task_history"][-1][0], "%Y-%m-%d %H:%M:%S" )
-            duration = str(end - start)
-            msg = f"The dataset, tokenizer and model have been downloaded and loaded in {duration} (HH:MM:SS)" 
+            duration = round((end - start).total_seconds(),3)
+            msg = f"The dataset, tokenizer and model have been downloaded and loaded in {duration} s" 
 
             if g_State["previous_checkpoint"] == "": # start fresh
                 g_State["task_history"].append((TRAINING_START_TIME, SALAD_MACHINE_ID, "training_started", "fresh", msg))

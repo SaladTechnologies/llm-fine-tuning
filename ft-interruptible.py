@@ -172,7 +172,7 @@ fine_tuning = SFTTrainer(
 # Train the model
 print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"), flush=True)
 ##################### For running on SaladCloud - 3: Resume training from the latest checkpoint 
-Notify_Uploader('start') # Signal uploader thread: model downloaded and training started
+Notify_Uploader('start') # Optional: Signal the uploader thread that the model downloaded and training started
 temp = Get_Checkpoint()
 if temp == "":
     fine_tuning.train()

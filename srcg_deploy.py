@@ -49,6 +49,8 @@ request_body = ContainerGroupCreationRequest(
    display_name=g_CONTAINER_GROUP_NAME,
    container={
        "image": g_IMAGE,
+
+       # 8 vCPU, 24 GB memory, RTX 4090(24G B), 50 GB Disk Space 
        "resources": {
            "cpu": 8,
            "memory": 24576,

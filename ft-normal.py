@@ -48,7 +48,7 @@ BASE_MODEL = g_MODEL
 MAX_SEQUENCE_LENGTH = 182
 PROJECT_RUN_NAME = g_TASK_NAME
 
-# LoRA adpater configuration
+# LoRA adpater configuration - hyperparameters
 LORA_R = 32
 LORA_ALPHA = 64
 TARGET_MODULES = ["q_proj", "v_proj", "k_proj", "o_proj"]
@@ -174,6 +174,7 @@ print("Training started at " + datetime.now(timezone.utc).strftime("%Y-%m-%d %H:
 fine_tuning.train()
 # To resume from a checkpoint, uncomment the line below and set the checkpoint path
 #fine_tuning.train(resume_from_checkpoint=PROJECT_RUN_NAME+'/checkpoint-200') 
+
 
 
 

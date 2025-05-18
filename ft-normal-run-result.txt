@@ -1,27 +1,108 @@
+################################################## Output
+
+Downloading the dataset at 2025-05-16 17:13:35
+
 ************************************************************ A sample
 {'text': 'How much does this cost to the nearest dollar?\n\nDelphi FG0166 Fuel Pump Module\nDelphi brings 80 years of OE Heritage into each Delphi pump, ensuring quality and fitment for each Delphi part. Part is validated, tested and matched to the right vehicle application Delphi brings 80 years of OE Heritage into each Delphi assembly, ensuring quality and fitment for each Delphi part Always be sure to check and clean fuel tank to avoid unnecessary returns Rigorous OE-testing ensures the pump can withstand extreme temperatures Brand Delphi, Fit Type Vehicle Specific Fit, Dimensions LxWxH 19.7 x 7.7 x 5.1 inches, Weight 2.2 Pounds, Auto Part Position Unknown, Operation Mode Mechanical, Manufacturer Delphi, Model FUEL PUMP, Dimensions 19.7\n\nPrice is $227.00', 'price': 226.95}
-Loading checkpoint shards: 100%|████████████████████████████████████████████████| 4/4 [00:22<00:00,  5.67s/it]
+
+Downloading the tokenizer at 2025-05-16 17:13:38
+Downloading the model at 2025-05-16 17:13:38
+
+Loading checkpoint shards: 100%|███████████████████████████████████████████████| 4/4 [00:22<00:00,  5.65s/it]
 
 ************************************************************ The memory footprint
 Memory footprint: 5591.5 MB
 
-{'loss': 1.9551, 'grad_norm': 3.466651678085327, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5}                 
-{'loss': 1.8986, 'grad_norm': 2.046945571899414, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0}  
+Training started at 2025-05-16 17:14:03
 
- 50%|████████████████████████████████████████                                        | 200/400 [05:41<05:42,  1.71s/it]
- 
-************************************************************ The current training state
-TrainerState(epoch=1.0, global_step=200, max_steps=400, logging_steps=100, eval_steps=500, save_steps=200, train_batch_size=5, num_train_epochs=2, num_input_tokens_seen=0, total_flos=1.606660818444288e+16, log_history=[{'loss': 1.9551, 'grad_norm': 3.466651678085327, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5, 'step': 100}, {'loss': 1.8986, 'grad_norm': 2.046945571899414, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0, 'step': 200}], best_metric=None, best_model_checkpoint=None, is_local_process_zero=True, is_world_process_zero=True, is_hyper_param_search=False, trial_name=None, trial_params=None, stateful_callbacks={'TrainerControl': {'args': {'should_training_stop': False, 'should_epoch_stop': False, 'should_save': True, 'should_evaluate': False, 'should_log': False}, 'attributes': {}}})
-************************************************************
+{'loss': 1.9559, 'grad_norm': 3.4526240825653076, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5, 'num_input_tokens_seen': 177755}
+{'loss': 1.899, 'grad_norm': 1.9903450012207031, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0, 'num_input_tokens_seen': 355510}
 
-{'loss': 1.7416, 'grad_norm': 2.4680075645446777, 'learning_rate': 1.5513811136094787e-05, 'epoch': 1.5}               
-{'loss': 1.6979, 'grad_norm': 2.4634957313537598, 'learning_rate': 0.0, 'epoch': 2.0}                                  
-
-100%|████████████████████████████████████████████████████████████████████████████████| 400/400 [11:25<00:00,  1.72s/it]
+ 50%|████████████████████████████████████████▌                                        | 200/400 [05:42<05:42,  1.71s/it]
 
 ************************************************************ The current training state
-TrainerState(epoch=2.0, global_step=400, max_steps=400, logging_steps=100, eval_steps=500, save_steps=200, train_batch_size=5, num_train_epochs=2, num_input_tokens_seen=0, total_flos=3.21334423345152e+16, log_history=[{'loss': 1.9551, 'grad_norm': 3.466651678085327, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5, 'step': 100}, {'loss': 1.8986, 'grad_norm': 2.046945571899414, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0, 'step': 200}, {'loss': 1.7416, 'grad_norm': 2.4680075645446777, 'learning_rate': 1.5513811136094787e-05, 'epoch': 1.5, 'step': 300}, {'loss': 1.6979, 'grad_norm': 2.4634957313537598, 'learning_rate': 0.0, 'epoch': 2.0, 'step': 400}], best_metric=None, best_model_checkpoint=None, is_local_process_zero=True, is_world_process_zero=True, is_hyper_param_search=False, trial_name=None, trial_params=None, stateful_callbacks={'TrainerControl': {'args': {'should_training_stop': True, 'should_epoch_stop': False, 'should_save': True, 'should_evaluate': False, 'should_log': False}, 'attributes': {}}})
+TrainerState(epoch=1.0, global_step=200, max_steps=400, logging_steps=100, eval_steps=500, save_steps=200, train_batch_size=5, num_train_epochs=2, num_input_tokens_seen=355510, total_flos=1.606660818444288e+16, log_history=[{'loss': 1.9559, 'grad_norm': 3.4526240825653076, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5, 'num_input_tokens_seen': 177755, 'step': 100}, {'loss': 1.899, 'grad_norm': 1.9903450012207031, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0, 'num_input_tokens_seen': 355510, 'step': 200}], best_metric=None, best_model_checkpoint=None, is_local_process_zero=True, is_world_process_zero=True, is_hyper_param_search=False, trial_name=None, trial_params=None, stateful_callbacks={'TrainerControl': {'args': {'should_training_stop': False, 'should_epoch_stop': False, 'should_save': True, 'should_evaluate': False, 'should_log': False}, 'attributes': {}}})
 ************************************************************
 
-{'train_runtime': 686.7746, 'train_samples_per_second': 5.824, 'train_steps_per_second': 0.582, 'train_loss': 1.8233317565917968, 'epoch': 2.0}
-100%|████████████████████████████████████████████████████████████████████████████████| 400/400 [11:26<00:00,  1.72s/it]
+{'loss': 1.7427, 'grad_norm': 2.5630171298980713, 'learning_rate': 1.5513811136094787e-05, 'epoch': 1.5, 'num_input_tokens_seen': 533275}
+{'loss': 1.6994, 'grad_norm': 2.606786012649536, 'learning_rate': 0.0, 'epoch': 2.0, 'num_input_tokens_seen': 711025}   
+
+100%|█████████████████████████████████████████████████████████████████████████████████| 400/400 [11:26<00:00,  1.72s/it]
+
+************************************************************ The current training state
+TrainerState(epoch=2.0, global_step=400, max_steps=400, logging_steps=100, eval_steps=500, save_steps=200, train_batch_size=5, num_train_epochs=2, num_input_tokens_seen=711025, total_flos=3.21334423345152e+16, log_history=[{'loss': 1.9559, 'grad_norm': 3.4526240825653076, 'learning_rate': 8.783564079088477e-05, 'epoch': 0.5, 'num_input_tokens_seen': 177755, 'step': 100}, {'loss': 1.899, 'grad_norm': 1.9903450012207031, 'learning_rate': 5.242811110572242e-05, 'epoch': 1.0, 'num_input_tokens_seen': 355510, 'step': 200}, {'loss': 1.7427, 'grad_norm': 2.5630171298980713, 'learning_rate': 1.5513811136094787e-05, 'epoch': 1.5, 'num_input_tokens_seen': 533275, 'step': 300}, {'loss': 1.6994, 'grad_norm': 2.606786012649536, 'learning_rate': 0.0, 'epoch': 2.0, 'num_input_tokens_seen': 711025, 'step': 400}], best_metric=None, best_model_checkpoint=None, is_local_process_zero=True, is_world_process_zero=True, is_hyper_param_search=False, trial_name=None, trial_params=None, stateful_callbacks={'TrainerControl': {'args': {'should_training_stop': True, 'should_epoch_stop': False, 'should_save': True, 'should_evaluate': False, 'should_log': False}, 'attributes': {}}})
+************************************************************
+
+{'train_runtime': 687.2278, 'train_samples_per_second': 5.82, 'train_steps_per_second': 0.582, 'train_loss': 1.8242554473876953, 'epoch': 2.0, 'num_input_tokens_seen': 711025}
+
+100%|█████████████████████████████████████████████████████████████████████████████████| 400/400 [11:27<00:00,  1.72s/it]
+
+Training completed at 2025-05-16 17:40:21
+
+################################################## Created directories during training
+
+ubuntu@wsl-asus:~/llm-fine-tuning/ft-normal$ tree   
+.
+|-- checkpoint-200
+|   |-- README.md
+|   |-- adapter_config.json
+|   |-- adapter_model.safetensors
+|   |-- optimizer.pt
+|   |-- rng_state.pth
+|   |-- scheduler.pt
+|   |-- special_tokens_map.json
+|   |-- tokenizer.json
+|   |-- tokenizer_config.json
+|   |-- trainer_state.json
+|   `-- training_args.bin
+|-- checkpoint-400
+|   |-- README.md
+|   |-- adapter_config.json
+|   |-- adapter_model.safetensors
+|   |-- optimizer.pt
+|   |-- rng_state.pth
+|   |-- scheduler.pt
+|   |-- special_tokens_map.json
+|   |-- tokenizer.json
+|   |-- tokenizer_config.json
+|   |-- trainer_state.json
+|   `-- training_args.bin
+`-- final
+    |-- README.md
+    |-- adapter_config.json
+    |-- adapter_model.safetensors
+    |-- special_tokens_map.json
+    |-- tokenizer.json
+    |-- tokenizer_config.json
+    `-- training_args.bin
+
+3 directories, 29 files
+
+################################################## checkpoint-200
+
+ubuntu@wsl-asus:~/llm-fine-tuning/ft-normal/checkpoint-200$ ls -ls
+total 336596
+     8 -rw-r--r-- 1 ubuntu ubuntu      5102 May 16 10:19 README.md
+     4 -rw-r--r-- 1 ubuntu ubuntu       752 May 16 10:19 adapter_config.json
+106536 -rw-r--r-- 1 ubuntu ubuntu 109086416 May 16 10:19 adapter_model.safetensors
+213152 -rw-r--r-- 1 ubuntu ubuntu 218260474 May 16 10:19 optimizer.pt
+    16 -rw-r--r-- 1 ubuntu ubuntu     14244 May 16 10:19 rng_state.pth
+     4 -rw-r--r-- 1 ubuntu ubuntu      1064 May 16 10:19 scheduler.pt
+     4 -rw-r--r-- 1 ubuntu ubuntu       335 May 16 10:19 special_tokens_map.json
+ 16808 -rw-r--r-- 1 ubuntu ubuntu  17209920 May 16 10:19 tokenizer.json
+    52 -rw-r--r-- 1 ubuntu ubuntu     50534 May 16 10:19 tokenizer_config.json
+     4 -rw-r--r-- 1 ubuntu ubuntu      1144 May 16 10:19 trainer_state.json
+     8 -rw-r--r-- 1 ubuntu ubuntu      5496 May 16 10:19 training_args.bin
+
+
+################################################## final
+
+ubuntu@wsl-asus:~/llm-fine-tuning/ft-normal/final$ ls -ls
+total 123420
+     8 -rw-r--r-- 1 ubuntu ubuntu      5102 May 16 10:40 README.md
+     4 -rw-r--r-- 1 ubuntu ubuntu       752 May 16 10:40 adapter_config.json
+106536 -rw-r--r-- 1 ubuntu ubuntu 109086416 May 16 10:40 adapter_model.safetensors
+     4 -rw-r--r-- 1 ubuntu ubuntu       335 May 16 10:40 special_tokens_map.json
+ 16808 -rw-r--r-- 1 ubuntu ubuntu  17209920 May 16 10:40 tokenizer.json
+    52 -rw-r--r-- 1 ubuntu ubuntu     50534 May 16 10:40 tokenizer_config.json
+     8 -rw-r--r-- 1 ubuntu ubuntu      5496 May 16 10:40 training_args.bin
