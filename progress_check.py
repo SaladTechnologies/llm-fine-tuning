@@ -1,5 +1,7 @@
 import subprocess
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 g_BUCKET                = os.getenv("BUCKET", "")
 g_FOLDER                = os.getenv("FOLDER", "")
