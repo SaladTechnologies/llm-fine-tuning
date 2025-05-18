@@ -1,0 +1,859 @@
+{
+  "task_name": "v1-l31-8b-06",
+  "done": true,
+  "previous_checkpoint": "checkpoint-160000",
+  "task_creation_time": "2025-05-16 15:14:20",
+  "task_completion_time": "2025-05-17 16:27:17",
+  "task_duration": "1 day, 1:12:57",
+  "task_history": [
+    [
+      "2025-05-16 18:24:42",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 566,
+        "UL Mbps": 87,
+        "RTT to US-East ms": 23.65,
+        "RTT to EU-Cent ms": 107.64,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.6,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "23670 MiB"
+      }
+    ],
+    [
+      "2025-05-16 18:27:41",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "training_started",
+      "fresh",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:02:59 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-16 18:59:51",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_uploaded",
+      "checkpoint-4000",
+      "File Size: 344.637 MB, UL Time: 5.386 s, UL Throught: 511.9 Mbps"
+    ],
+    [
+      "2025-05-16 19:05:02",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "node_accepted",
+      {
+        "Country": "",
+        "DL Mbps": 50,
+        "UL Mbps": 20,
+        "RTT to US-East ms": 23.36,
+        "RTT to EU-Cent ms": 107.88,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.6,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "23670 MiB"
+      }
+    ],
+    [
+      "2025-05-16 19:05:08",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_downloaded",
+      "checkpoint-4000",
+      "File Size: 344.637324 MB, DL Time: 5.937 s, DL Throught: 464.393 Mbps"
+    ],
+    [
+      "2025-05-16 19:05:31",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "training_resumed",
+      "checkpoint-4000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:00:23 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-16 19:07:09",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 690,
+        "UL Mbps": 63,
+        "RTT to US-East ms": 28.19,
+        "RTT to EU-Cent ms": 111.52,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.6,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "23670 MiB"
+      }
+    ],
+    [
+      "2025-05-16 19:07:13",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_downloaded",
+      "checkpoint-4000",
+      "File Size: 344.637324 MB, DL Time: 3.99 s, DL Throught: 691.002 Mbps"
+    ],
+    [
+      "2025-05-16 19:07:29",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "training_resumed",
+      "checkpoint-4000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:00:16 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-16 19:39:40",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_uploaded",
+      "checkpoint-8000",
+      "File Size: 344.633 MB, UL Time: 69.939 s, UL Throught: 39.421 Mbps"
+    ],
+    [
+      "2025-05-16 19:50:42",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 673,
+        "UL Mbps": 108,
+        "RTT to US-East ms": 31.03,
+        "RTT to EU-Cent ms": 111.25,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.6,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "23670 MiB"
+      }
+    ],
+    [
+      "2025-05-16 19:50:47",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_downloaded",
+      "checkpoint-8000",
+      "File Size: 344.63275 MB, DL Time: 4.841 s, DL Throught: 569.523 Mbps"
+    ],
+    [
+      "2025-05-16 19:54:04",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "training_resumed",
+      "checkpoint-8000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:03:17 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-16 20:25:11",
+      "1ae2f701-e197-ac5c-b933-91312c391a33",
+      "ckpt_uploaded",
+      "checkpoint-12000",
+      "File Size: 344.633 MB, UL Time: 5.199 s, UL Throught: 530.307 Mbps"
+    ],
+    [
+      "2025-05-16 20:46:50",
+      "ddcd4688-7f50-b45a-a5af-3cff46c42f4b",
+      "node_rejected",
+      "Poor network bandwith - Country: United States, DL Speed: 2 Mbps, UL Speed: 3 Mbps"
+    ],
+    [
+      "2025-05-16 20:54:15",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 217,
+        "UL Mbps": 42,
+        "RTT to US-East ms": 41.81,
+        "RTT to EU-Cent ms": 125.18,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.9,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "22874 MiB"
+      }
+    ],
+    [
+      "2025-05-16 20:54:23",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_downloaded",
+      "checkpoint-12000",
+      "File Size: 344.633051 MB, DL Time: 8.359 s, DL Throught: 329.832 Mbps"
+    ],
+    [
+      "2025-05-16 21:00:35",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "training_resumed",
+      "checkpoint-12000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:06:12 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-16 21:34:03",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-16000",
+      "File Size: 344.633 MB, UL Time: 54.562 s, UL Throught: 50.531 Mbps"
+    ],
+    [
+      "2025-05-16 22:05:39",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-20000",
+      "File Size: 344.633 MB, UL Time: 55.146 s, UL Throught: 49.996 Mbps"
+    ],
+    [
+      "2025-05-16 22:37:13",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-24000",
+      "File Size: 344.634 MB, UL Time: 53.336 s, UL Throught: 51.693 Mbps"
+    ],
+    [
+      "2025-05-16 23:08:51",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-28000",
+      "File Size: 344.634 MB, UL Time: 57.444 s, UL Throught: 47.996 Mbps"
+    ],
+    [
+      "2025-05-16 23:40:18",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-32000",
+      "File Size: 344.634 MB, UL Time: 56.569 s, UL Throught: 48.738 Mbps"
+    ],
+    [
+      "2025-05-17 00:11:58",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-36000",
+      "File Size: 344.634 MB, UL Time: 59.207 s, UL Throught: 46.567 Mbps"
+    ],
+    [
+      "2025-05-17 00:43:44",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-40000",
+      "File Size: 344.634 MB, UL Time: 75.427 s, UL Throught: 36.553 Mbps"
+    ],
+    [
+      "2025-05-17 01:15:17",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_uploaded",
+      "checkpoint-44000",
+      "File Size: 344.635 MB, UL Time: 72.296 s, UL Throught: 38.136 Mbps"
+    ],
+    [
+      "2025-05-17 01:25:50",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 266,
+        "UL Mbps": 41,
+        "RTT to US-East ms": 41.8,
+        "RTT to EU-Cent ms": 119.75,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.9,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "22861 MiB"
+      }
+    ],
+    [
+      "2025-05-17 01:25:58",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "ckpt_downloaded",
+      "checkpoint-44000",
+      "File Size: 344.634656 MB, DL Time: 8.012 s, DL Throught: 344.118 Mbps"
+    ],
+    [
+      "2025-05-17 01:26:11",
+      "34400cd0-b69a-ff5e-9f70-b7e170e3b48c",
+      "training_resumed",
+      "checkpoint-44000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:00:13 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-17 01:32:53",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "node_accepted",
+      {
+        "Country": "United States",
+        "DL Mbps": 212,
+        "UL Mbps": 30,
+        "RTT to US-East ms": 28.17,
+        "RTT to EU-Cent ms": 96.49,
+        "GPU": "NVIDIA GeForce RTX 4090",
+        "CUDA": 12.7,
+        "VRAM_Total": "24564 MiB",
+        "VRAM_Free": "23729 MiB"
+      }
+    ],
+    [
+      "2025-05-17 01:33:36",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_downloaded",
+      "checkpoint-44000",
+      "File Size: 344.634656 MB, DL Time: 42.271 s, DL Throught: 65.224 Mbps"
+    ],
+    [
+      "2025-05-17 01:38:05",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "training_resumed",
+      "checkpoint-44000",
+      "The dataset, tokenizer and model have been downloaded and loaded in 0:04:29 (HH:MM:SS)"
+    ],
+    [
+      "2025-05-17 02:09:25",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-48000",
+      "File Size: 344.635 MB, UL Time: 9.281 s, UL Throught: 297.067 Mbps"
+    ],
+    [
+      "2025-05-17 02:40:05",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-52000",
+      "File Size: 344.635 MB, UL Time: 8.904 s, UL Throught: 309.645 Mbps"
+    ],
+    [
+      "2025-05-17 03:10:44",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-56000",
+      "File Size: 344.635 MB, UL Time: 9.132 s, UL Throught: 301.914 Mbps"
+    ],
+    [
+      "2025-05-17 03:41:26",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-60000",
+      "File Size: 344.635 MB, UL Time: 10.652 s, UL Throught: 258.832 Mbps"
+    ],
+    [
+      "2025-05-17 04:11:56",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-64000",
+      "File Size: 344.636 MB, UL Time: 9.54 s, UL Throught: 289.003 Mbps"
+    ],
+    [
+      "2025-05-17 04:42:36",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-68000",
+      "File Size: 344.636 MB, UL Time: 9.253 s, UL Throught: 297.967 Mbps"
+    ],
+    [
+      "2025-05-17 05:13:15",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-72000",
+      "File Size: 344.637 MB, UL Time: 9.036 s, UL Throught: 305.124 Mbps"
+    ],
+    [
+      "2025-05-17 05:43:55",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-76000",
+      "File Size: 344.637 MB, UL Time: 9.012 s, UL Throught: 305.936 Mbps"
+    ],
+    [
+      "2025-05-17 06:14:24",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-80000",
+      "File Size: 344.637 MB, UL Time: 9.06 s, UL Throught: 304.315 Mbps"
+    ],
+    [
+      "2025-05-17 06:45:07",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-84000",
+      "File Size: 344.637 MB, UL Time: 11.885 s, UL Throught: 231.981 Mbps"
+    ],
+    [
+      "2025-05-17 07:15:47",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-88000",
+      "File Size: 344.637 MB, UL Time: 10.046 s, UL Throught: 274.447 Mbps"
+    ],
+    [
+      "2025-05-17 07:46:27",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-92000",
+      "File Size: 344.638 MB, UL Time: 9.447 s, UL Throught: 291.85 Mbps"
+    ],
+    [
+      "2025-05-17 08:16:58",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-96000",
+      "File Size: 344.638 MB, UL Time: 10.417 s, UL Throught: 264.674 Mbps"
+    ],
+    [
+      "2025-05-17 08:47:38",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-100000",
+      "File Size: 344.638 MB, UL Time: 9.118 s, UL Throught: 302.38 Mbps"
+    ],
+    [
+      "2025-05-17 09:18:17",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-104000",
+      "File Size: 344.638 MB, UL Time: 8.897 s, UL Throught: 309.891 Mbps"
+    ],
+    [
+      "2025-05-17 09:48:58",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-108000",
+      "File Size: 344.638 MB, UL Time: 9.729 s, UL Throught: 283.39 Mbps"
+    ],
+    [
+      "2025-05-17 10:19:29",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-112000",
+      "File Size: 344.639 MB, UL Time: 10.61 s, UL Throught: 259.86 Mbps"
+    ],
+    [
+      "2025-05-17 10:50:09",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-116000",
+      "File Size: 344.639 MB, UL Time: 9.833 s, UL Throught: 280.394 Mbps"
+    ],
+    [
+      "2025-05-17 11:20:49",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-120000",
+      "File Size: 344.639 MB, UL Time: 9.059 s, UL Throught: 304.351 Mbps"
+    ],
+    [
+      "2025-05-17 11:51:29",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-124000",
+      "File Size: 344.639 MB, UL Time: 9.487 s, UL Throught: 290.62 Mbps"
+    ],
+    [
+      "2025-05-17 12:21:58",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-128000",
+      "File Size: 344.639 MB, UL Time: 8.841 s, UL Throught: 311.855 Mbps"
+    ],
+    [
+      "2025-05-17 12:52:38",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-132000",
+      "File Size: 344.64 MB, UL Time: 8.88 s, UL Throught: 310.486 Mbps"
+    ],
+    [
+      "2025-05-17 13:23:18",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-136000",
+      "File Size: 344.64 MB, UL Time: 9.904 s, UL Throught: 278.384 Mbps"
+    ],
+    [
+      "2025-05-17 13:54:00",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-140000",
+      "File Size: 344.64 MB, UL Time: 10.854 s, UL Throught: 254.019 Mbps"
+    ],
+    [
+      "2025-05-17 14:24:30",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-144000",
+      "File Size: 344.64 MB, UL Time: 9.563 s, UL Throught: 288.311 Mbps"
+    ],
+    [
+      "2025-05-17 14:55:10",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-148000",
+      "File Size: 344.64 MB, UL Time: 9.412 s, UL Throught: 292.937 Mbps"
+    ],
+    [
+      "2025-05-17 15:25:50",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-152000",
+      "File Size: 344.641 MB, UL Time: 9.716 s, UL Throught: 283.772 Mbps"
+    ],
+    [
+      "2025-05-17 15:56:30",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-156000",
+      "File Size: 344.641 MB, UL Time: 9.205 s, UL Throught: 299.525 Mbps"
+    ],
+    [
+      "2025-05-17 16:27:11",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "ckpt_uploaded",
+      "checkpoint-160000",
+      "File Size: 344.641 MB, UL Time: 10.405 s, UL Throught: 264.981 Mbps"
+    ],
+    [
+      "2025-05-17 16:27:17",
+      "52d7958c-5389-495e-9514-e58a296d3d31",
+      "model_uploaded",
+      "final",
+      "File Size: 126.359 MB, UL Time: 5.475 s, UL Throught: 184.634 Mbps"
+    ]
+  ],
+  "training_state": {
+    "epoch": 2.0,
+    "global_step": 160000,
+    "max_steps": 160000,
+    "logging_steps": 4000,
+    "eval_steps": 500,
+    "save_steps": 4000,
+    "train_batch_size": 5,
+    "num_train_epochs": 2,
+    "num_input_tokens_seen": 142214050,
+    "total_flos": 6.427097464692326e+18,
+    "log_history": [
+      {
+        "epoch": 0.05,
+        "grad_norm": 3.550830841064453,
+        "learning_rate": 8.333333333333334e-05,
+        "loss": 1.91,
+        "num_input_tokens_seen": 3555245,
+        "step": 4000
+      },
+      {
+        "epoch": 0.1,
+        "grad_norm": 2.92546010017395,
+        "learning_rate": 9.989514131188559e-05,
+        "loss": 1.8786,
+        "num_input_tokens_seen": 7110655,
+        "step": 8000
+      },
+      {
+        "epoch": 0.15,
+        "grad_norm": 2.800224781036377,
+        "learning_rate": 9.946990656181781e-05,
+        "loss": 1.8634,
+        "num_input_tokens_seen": 10665985,
+        "step": 12000
+      },
+      {
+        "epoch": 0.2,
+        "grad_norm": 4.0739665031433105,
+        "learning_rate": 9.872052623234632e-05,
+        "loss": 1.8507,
+        "num_input_tokens_seen": 14221255,
+        "step": 16000
+      },
+      {
+        "epoch": 0.25,
+        "grad_norm": 4.191357612609863,
+        "learning_rate": 9.765191054744305e-05,
+        "loss": 1.8434,
+        "num_input_tokens_seen": 17776510,
+        "step": 20000
+      },
+      {
+        "epoch": 0.3,
+        "grad_norm": 3.8909685611724854,
+        "learning_rate": 9.627106148213522e-05,
+        "loss": 1.8652,
+        "num_input_tokens_seen": 21331965,
+        "step": 24000
+      },
+      {
+        "epoch": 0.35,
+        "grad_norm": 2.357532024383545,
+        "learning_rate": 9.458702688291073e-05,
+        "loss": 1.8377,
+        "num_input_tokens_seen": 24887340,
+        "step": 28000
+      },
+      {
+        "epoch": 0.4,
+        "grad_norm": 4.913529872894287,
+        "learning_rate": 9.261084118279847e-05,
+        "loss": 1.8414,
+        "num_input_tokens_seen": 28442780,
+        "step": 32000
+      },
+      {
+        "epoch": 0.45,
+        "grad_norm": 6.220454216003418,
+        "learning_rate": 9.035545309958046e-05,
+        "loss": 1.8343,
+        "num_input_tokens_seen": 31997910,
+        "step": 36000
+      },
+      {
+        "epoch": 0.5,
+        "grad_norm": 5.384849548339844,
+        "learning_rate": 8.783564079088477e-05,
+        "loss": 1.8298,
+        "num_input_tokens_seen": 35553370,
+        "step": 40000
+      },
+      {
+        "epoch": 0.55,
+        "grad_norm": 4.809854507446289,
+        "learning_rate": 8.506791502209496e-05,
+        "loss": 1.8251,
+        "num_input_tokens_seen": 39108660,
+        "step": 44000
+      },
+      {
+        "loss": 1.8203,
+        "grad_norm": 7.628992080688477,
+        "learning_rate": 8.2070410981557e-05,
+        "epoch": 0.6,
+        "num_input_tokens_seen": 42663950,
+        "step": 48000
+      },
+      {
+        "loss": 1.8127,
+        "grad_norm": 3.0565102100372314,
+        "learning_rate": 7.886276945195099e-05,
+        "epoch": 0.65,
+        "num_input_tokens_seen": 46219300,
+        "step": 52000
+      },
+      {
+        "loss": 1.8051,
+        "grad_norm": 4.455658912658691,
+        "learning_rate": 7.546600811643816e-05,
+        "epoch": 0.7,
+        "num_input_tokens_seen": 49774925,
+        "step": 56000
+      },
+      {
+        "loss": 1.7994,
+        "grad_norm": 4.527309417724609,
+        "learning_rate": 7.190238384283412e-05,
+        "epoch": 0.75,
+        "num_input_tokens_seen": 53330130,
+        "step": 60000
+      },
+      {
+        "loss": 1.7965,
+        "grad_norm": 7.5535078048706055,
+        "learning_rate": 6.819524684817438e-05,
+        "epoch": 0.8,
+        "num_input_tokens_seen": 56885545,
+        "step": 64000
+      },
+      {
+        "loss": 1.7857,
+        "grad_norm": 3.60563325881958,
+        "learning_rate": 6.436888769924142e-05,
+        "epoch": 0.85,
+        "num_input_tokens_seen": 60440950,
+        "step": 68000
+      },
+      {
+        "loss": 1.7863,
+        "grad_norm": 2.9371659755706787,
+        "learning_rate": 6.044837815156377e-05,
+        "epoch": 0.9,
+        "num_input_tokens_seen": 63996190,
+        "step": 72000
+      },
+      {
+        "loss": 1.7776,
+        "grad_norm": 6.3265581130981445,
+        "learning_rate": 5.645940686977033e-05,
+        "epoch": 0.95,
+        "num_input_tokens_seen": 67551665,
+        "step": 76000
+      },
+      {
+        "loss": 1.7786,
+        "grad_norm": 5.547213554382324,
+        "learning_rate": 5.242811110572242e-05,
+        "epoch": 1.0,
+        "num_input_tokens_seen": 71107140,
+        "step": 80000
+      },
+      {
+        "loss": 1.7322,
+        "grad_norm": 7.869321346282959,
+        "learning_rate": 4.838090543733222e-05,
+        "epoch": 1.05,
+        "num_input_tokens_seen": 74662605,
+        "step": 84000
+      },
+      {
+        "loss": 1.7299,
+        "grad_norm": 3.565537691116333,
+        "learning_rate": 4.434430869023579e-05,
+        "epoch": 1.1,
+        "num_input_tokens_seen": 78217960,
+        "step": 88000
+      },
+      {
+        "loss": 1.728,
+        "grad_norm": 4.786616325378418,
+        "learning_rate": 4.0344770176395606e-05,
+        "epoch": 1.15,
+        "num_input_tokens_seen": 81773195,
+        "step": 92000
+      },
+      {
+        "loss": 1.7143,
+        "grad_norm": 4.448318004608154,
+        "learning_rate": 3.640849638818286e-05,
+        "epoch": 1.2,
+        "num_input_tokens_seen": 85328600,
+        "step": 96000
+      },
+      {
+        "loss": 1.7086,
+        "grad_norm": 3.703786849975586,
+        "learning_rate": 3.2561279283505883e-05,
+        "epoch": 1.25,
+        "num_input_tokens_seen": 88883960,
+        "step": 100000
+      },
+      {
+        "loss": 1.702,
+        "grad_norm": 6.738938331604004,
+        "learning_rate": 2.882832728712551e-05,
+        "epoch": 1.3,
+        "num_input_tokens_seen": 92439355,
+        "step": 104000
+      },
+      {
+        "loss": 1.692,
+        "grad_norm": 5.784341335296631,
+        "learning_rate": 2.5234100115500643e-05,
+        "epoch": 1.35,
+        "num_input_tokens_seen": 95994780,
+        "step": 108000
+      },
+      {
+        "loss": 1.6924,
+        "grad_norm": 6.114114761352539,
+        "learning_rate": 2.180214850745467e-05,
+        "epoch": 1.4,
+        "num_input_tokens_seen": 99550225,
+        "step": 112000
+      },
+      {
+        "loss": 1.6811,
+        "grad_norm": 5.77444314956665,
+        "learning_rate": 1.8554959910807775e-05,
+        "epoch": 1.45,
+        "num_input_tokens_seen": 103105660,
+        "step": 116000
+      },
+      {
+        "loss": 1.6788,
+        "grad_norm": 7.917150020599365,
+        "learning_rate": 1.5513811136094787e-05,
+        "epoch": 1.5,
+        "num_input_tokens_seen": 106661155,
+        "step": 120000
+      },
+      {
+        "loss": 1.6778,
+        "grad_norm": 5.698758125305176,
+        "learning_rate": 1.2698628942837699e-05,
+        "epoch": 1.55,
+        "num_input_tokens_seen": 110216510,
+        "step": 124000
+      },
+      {
+        "loss": 1.6791,
+        "grad_norm": 4.488860130310059,
+        "learning_rate": 1.012785947186397e-05,
+        "epoch": 1.6,
+        "num_input_tokens_seen": 113771830,
+        "step": 128000
+      },
+      {
+        "loss": 1.662,
+        "grad_norm": 3.8766636848449707,
+        "learning_rate": 7.81834737919978e-06,
+        "epoch": 1.65,
+        "num_input_tokens_seen": 117326915,
+        "step": 132000
+      },
+      {
+        "loss": 1.6655,
+        "grad_norm": 6.445444107055664,
+        "learning_rate": 5.785225463498828e-06,
+        "epoch": 1.7,
+        "num_input_tokens_seen": 120882240,
+        "step": 136000
+      },
+      {
+        "loss": 1.6676,
+        "grad_norm": 8.453408241271973,
+        "learning_rate": 4.041815510209396e-06,
+        "epoch": 1.75,
+        "num_input_tokens_seen": 124437630,
+        "step": 140000
+      },
+      {
+        "loss": 1.6569,
+        "grad_norm": 9.293261528015137,
+        "learning_rate": 2.5995410021864787e-06,
+        "epoch": 1.8,
+        "num_input_tokens_seen": 127992830,
+        "step": 144000
+      },
+      {
+        "loss": 1.6596,
+        "grad_norm": 5.5966715812683105,
+        "learning_rate": 1.4678522687020413e-06,
+        "epoch": 1.85,
+        "num_input_tokens_seen": 131548035,
+        "step": 148000
+      },
+      {
+        "loss": 1.657,
+        "grad_norm": 6.47092866897583,
+        "learning_rate": 6.54164563305465e-07,
+        "epoch": 1.9,
+        "num_input_tokens_seen": 135103350,
+        "step": 152000
+      },
+      {
+        "loss": 1.6574,
+        "grad_norm": 4.95835542678833,
+        "learning_rate": 1.6380947627153143e-07,
+        "epoch": 1.95,
+        "num_input_tokens_seen": 138658610,
+        "step": 156000
+      },
+      {
+        "loss": 1.6589,
+        "grad_norm": 12.544410705566406,
+        "learning_rate": 0.0,
+        "epoch": 2.0,
+        "num_input_tokens_seen": 142214050,
+        "step": 160000
+      }
+    ],
+    "best_metric": null,
+    "best_model_checkpoint": null,
+    "is_local_process_zero": true,
+    "is_world_process_zero": true,
+    "is_hyper_param_search": false,
+    "trial_name": null,
+    "trial_params": null,
+    "stateful_callbacks": {
+      "TrainerControl": {
+        "args": {
+          "should_training_stop": true,
+          "should_epoch_stop": false,
+          "should_save": true,
+          "should_evaluate": false,
+          "should_log": false
+        },
+        "attributes": {}
+      }
+    }
+  }
+}
