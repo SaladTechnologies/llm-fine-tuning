@@ -1,0 +1,39 @@
+services:
+  llm-fine-tuning:
+    image: docker.io/saladtechnologies/llm-fine-tuning:1.0.0
+    container_name: ${CONTAINER_GROUP_NAME}
+    restart: "no"  
+    environment:
+      - SALAD_MACHINE_ID=wsl-asus
+      - CLOUDFLARE_ENDPOINT_URL=${CLOUDFLARE_ENDPOINT_URL}
+      - CLOUDFLARE_REGION=${CLOUDFLARE_REGION}
+      - CLOUDFLARE_ID=${CLOUDFLARE_ID}
+      - CLOUDFLARE_KEY=${CLOUDFLARE_KEY}
+      - BUCKET=${BUCKET}
+      - FOLDER=${FOLDER}
+      - HF_TOKEN=${HF_TOKEN}
+      - SALAD_API_KEY=${SALAD_API_KEY}
+      - ORGANIZATION_NAME=${ORGANIZATION_NAME}
+      - PROJECT_NAME=${PROJECT_NAME}
+      - CONTAINER_GROUP_NAME=${CONTAINER_GROUP_NAME}
+      - TASK_NAME=${TASK_NAME}
+      - MODEL=${MODEL}
+      - EPOCHS=${EPOCHS}
+      - BATCH_SIZE=${BATCH_SIZE}
+      - SAVING_STEPS=${SAVING_STEPS}
+      - SEED=${SEED}
+      - DLSPEED=${DLSPEED}
+      - ULSPEED=${ULSPEED}
+      - CUDA_RT_VERSION=${CUDA_RT_VERSION}
+      - VRAM_AVAILABLE=${VRAM_AVAILABLE}
+      - MAX_NO_RESPONSE_TIME=${MAX_NO_RESPONSE_TIME}
+    volumes:
+      - /home/ubuntu/.cache:/root/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true

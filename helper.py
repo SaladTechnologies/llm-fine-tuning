@@ -386,7 +386,7 @@ def Uploader(queue):
             time.sleep(10)
             no_response_time = no_response_time + 10
             if no_response_time > g_MAX_NO_RESPONSE_TIME:
-                print("No response from the trainer thread for one hour: poor download throughput or node performance", flush=True)
+                print("No response from the main thread for one hour: poor download throughput or node performance", flush=True)
                 Reallocate("poor network throughput or node performance")
             continue
 
